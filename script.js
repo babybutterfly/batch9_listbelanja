@@ -3,8 +3,8 @@ let modal = document.getElementById('modal');
 let floating_button = document.getElementById('floating_button');
 let modal_bg = document.getElementById('modal_bg');
 let addlist_form = document.getElementById('addlist_form');
-let root = document.getElementById("root");
-let subtitle = document.getElementById("subtitle");
+let root = document.getElementById('root');
+let subtitle = document.getElementById('subtitle');
 
 //tambahkan date ke subtitle
 subtitle.innerHTML = new Date().toLocaleDateString();
@@ -36,14 +36,14 @@ addlist_form.addEventListener('submit', (event) => {
   let barang = event.target.barang.value;
   let harga = event.target.harga.value;
 
- //push data ke data_list_belanja
- data_list_belanja.push({
-   nama_barang : barang,
-   harga_barang : harga,
-   tanggal : new Date().toLocaleDateString()
- })
+  //push data ke data_list_belanja
+  data_list_belanja.push({
+    nama_barang: barang,
+    harga_barang: harga,
+    tanggal: new Date().toLocaleDateString(),
+  });
 
- console.info(data_list_belanja);
+  console.info(data_list_belanja);
 
   //clear input field
   event.target.barang.value = '';
@@ -51,7 +51,6 @@ addlist_form.addEventListener('submit', (event) => {
 
   hideModal();
   renderToHTML();
-
 });
 
 //show modal
@@ -69,13 +68,12 @@ function hideModal() {
 }
 
 //render function
-function renderToHTML(){
-  
+function renderToHTML() {
   //clear element div
-  root.innerHTML
+  root.innerHTML = '';
 
   //perulangan
-  data_list_belanja.forEach((e, i)=>{
+  data_list_belanja.forEach((e, i) => {
     root.innerHTML += `
   
     <div class="card">
@@ -85,15 +83,14 @@ function renderToHTML(){
       </div>
       <button onclick="handleDelete(${i})">Selesai</button>
     </div>
-    `
+    `;
   });
-
-
 }
 
 // fucntion untuk delete item pada  array datalist belanja
-function handleDelete(index){
+function handleDelete(index) {
   data_list_belanja.splice(index, 1);
+  console.info(data_list_belanja);
 
   renderToHTML();
 }
